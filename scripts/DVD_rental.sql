@@ -99,6 +99,40 @@ SELECT phone FROM address
 WHERE address = '259 Ipoh Drive';
 
 
+--Order By
+--Order By is done late in the query because you want to gather the results first them sort them after you have them
+SELECT * FROM customer;
+
+--Ordering everything in the customer table by the customer first name
+SELECT * FROM customer
+ORDER BY first_name ASC; --Even though ascending order is default if not declared ASC or DESC, ASC helps others who may read your code to know that the table is sorted in ascending order.
+
+
+--Descending order
+SELECT * FROM customer
+ORDER BY first_name DESC; 
+
+--Ordering by store_id and first_name columns
+SELECT * FROM customer
+ORDER BY store_id, first_name;
+
+--Sorting by store_id and selecting certain columns out of customer table.
+SELECT store_id, first_name, last_name FROM customer
+ORDER BY store_id;
+
+--Same as before only now we're selecting certain columns out of customer table.
+SELECT store_id, first_name, last_name FROM customer
+ORDER BY store_id, first_name;
+
+--Same as before only now we're sorting store_id in Descending order and first_name in Ascending order.
+SELECT store_id, first_name, last_name FROM customer
+ORDER BY store_id DESC, first_name ASC;
+
+--Yu can sort by columns not included in Select statement
+SELECT first_name, last_name FROM customer
+ORDER BY store_id DESC, first_name ASC;
+
+
 
 
 
