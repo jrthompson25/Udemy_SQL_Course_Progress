@@ -132,6 +132,49 @@ ORDER BY store_id DESC, first_name ASC;
 SELECT first_name, last_name FROM customer
 ORDER BY store_id DESC, first_name ASC;
 
+--LIMIT Keyword
+--Table ordered by payment date in ascending order
+SELECT * FROM payment
+ORDER BY payment_date;
+
+--Table ordered by payment date in descending order
+SELECT * FROM payment
+ORDER BY payment_date DESC;
+
+--To get the 5 most recent purchases in the payment table, we can use DESC and LIMIT
+SELECT * FROM payment
+ORDER BY payment_date DESC
+LIMIT 5;
+
+--To get the 5 most recent purchases in the payment table that have an amount more than 0, we can use DESC and LIMIT
+SELECT * FROM payment
+WHERE amount != 0.00
+ORDER BY payment_date DESC
+LIMIT 5;
+
+--ORDER BY, LIMIT Challenge 1
+SELECT * FROM payment;
+SELECT customer_id FROM payment
+ORDER BY payment_date ASC
+LIMIT 10;
+
+--ORDER BY, LIMIT Challenge 2
+SELECT * FROM film;
+SELECT title, length FROM film
+ORDER BY length ASC
+LIMIT 5;
+
+--ORDER BY, LIMIT Bonus Challenge
+SELECT * FROM film;
+SELECT COUNT(title) FROM film
+WHERE length <= 50;
+
+
+
+
+
+
+
 
 
 
