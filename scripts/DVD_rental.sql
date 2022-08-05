@@ -170,6 +170,57 @@ SELECT COUNT(title) FROM film
 WHERE length <= 50;
 
 
+--BETWEEN Keyword Operator
+--Is Inclusive 
+--Can use BETWEEN coupled with the WHERE clause to figure out between values in a range
+--Can use BETWEEN coupled with the WHERE clause to figure out values not between a certain range (less than low point or greater than high point)
+--Can use WHERE value BETWEEN 
+
+--Practice with BETWEEN Operator in pgAdmin
+SELECT * FROM payment
+LIMIT 2;
+
+--Gets the number of amounts between 8 and 9 dollars.
+SELECT COUNT(amount) FROM payment
+WHERE amount BETWEEN 8 AND 9;
+
+--Gets the number of amounts not between 8 and 9 dollars.
+SELECT COUNT(amount) FROM payment
+WHERE amount NOT BETWEEN 8 AND 9;
+
+SELECT * FROM payment;
+
+SELECT * FROM payment
+WHERE payment_date BETWEEN '2007-02-01' AND '2007-02-15';
+
+--IN - When combined with WHERE statement, it is like multiple OR statements to find out if one or more values is in a column
+--NOT IN - Excludes everything within the parenthesis of the IN statement
+SELECT * FROM payment
+LIMIT 2;
+
+--Values in amount column that are 0.99, 1.98, 1.99
+SELECT * FROM payment
+WHERE amount IN (0.99, 1.98, 1.99);
+
+--Count of values in amount column that are 0.99, 1.98, 1.99
+SELECT COUNT(*) FROM payment
+WHERE amount IN (0.99, 1.98, 1.99);
+
+--Count of values in amount column that are not 0.99, 1.98, 1.99
+SELECT COUNT(*) FROM payment
+WHERE amount NOT IN (0.99, 1.98, 1.99);
+
+--All of customer table
+SELECT * FROM customer;
+
+SELECT * FROM customer
+WHERE first_name IN ('John', 'Jake', 'Julie');
+
+--Everyone but John, Jake, and Julie
+SELECT * FROM customer
+WHERE first_name NOT IN ('John', 'Jake', 'Julie');
+
+
 
 
 
