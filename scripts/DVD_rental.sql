@@ -220,7 +220,48 @@ WHERE first_name IN ('John', 'Jake', 'Julie');
 SELECT * FROM customer
 WHERE first_name NOT IN ('John', 'Jake', 'Julie');
 
+--LIKE and ILIKE
+--Selects names of customers whose first names start with J
+SELECT * FROM customer
+WHERE first_name LIKE 'J%';
 
+--Selects names of customers whose first names start with J and last name starts with S
+SELECT * FROM customer
+WHERE first_name LIKE 'J%' AND last_name LIKE 'S%';
+
+--Using ILIKE for the same result but with a lower-case j and s
+SELECT * FROM customer
+WHERE first_name ILIKE 'j%' AND last_name ILIKE 's%';
+
+--Count of customers with a first name that starts with J
+SELECT COUNT(*) FROM customer
+WHERE first_name LIKE 'J%';
+
+--Count of customers whose first names start with J and last name starts with S
+SELECT COUNT(*) FROM customer
+WHERE first_name LIKE 'J%' AND last_name LIKE 'S%';
+
+--Selects customers with the letters her anywhere in their first name
+SELECT * FROM customer
+WHERE first_name LIKE '%her%';
+
+--Selects customers whose first name consisting of letter her after a single charater in their name followed by any number of characters
+SELECT * FROM customer
+WHERE first_name LIKE '_her%';
+
+--Gets the opposite of the query above due to the NOT operator
+SELECT * FROM customer
+WHERE first_name NOT LIKE '_her%';
+
+--Gets first names starting with A
+SELECT * FROM customer
+WHERE first_name LIKE 'A%'
+ORDER BY last_name;
+
+--Gets first names starting with A, sorts alphabetically by last name, and removes last names that start with B
+SELECT * FROM customer
+WHERE first_name LIKE 'A%' AND last_name NOT LIKE 'B%'
+ORDER BY last_name;
 
 
 
