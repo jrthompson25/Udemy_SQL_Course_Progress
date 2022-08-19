@@ -263,6 +263,104 @@ SELECT * FROM customer
 WHERE first_name LIKE 'A%' AND last_name NOT LIKE 'B%'
 ORDER BY last_name;
 
+--General Challege 1
+SELECT * FROM payment;
+
+SELECT COUNT(amount) FROM payment
+WHERE amount > 5.00;
+
+SELECT * FROM actor;
+
+SELECT COUNT(*) FROM actor
+WHERE first_name LIKE 'P%';
+
+SELECT * FROM address;
+
+SELECT COUNT(DISTINCT district) FROM address;
+
+SELECT DISTINCT district FROM address;
+
+SELECT * FROM film;
+
+SELECT COUNT(*) FROM film
+WHERE rating = 'R' AND replacement_cost BETWEEN 5 AND 15;
+
+SELECT COUNT(*) FROM film
+WHERE title LIKE '%Truman%';
+
+--GROUP BY
+SELECT * FROM film;
+
+SELECT MIN(replacement_cost) FROM film;
+
+SELECT MAX(replacement_cost) FROM film;
+
+SELECT COUNT(*) FROM film;
+
+SELECT AVG(replacement_cost) FROM film;
+
+SELECT ROUND(AVG(replacement_cost), 2) FROM film;
+
+
+SELECT SUM(replacement_cost) FROM film;
+
+
+SELECT * FROM payment;
+
+--Same as selecting the DISTINCT customer_id
+SELECT customer_id FROM payment
+GROUP BY customer_id;
+
+SELECT DISTINCT customer_id FROM payment;
+
+SELECT customer_id FROM payment
+GROUP BY customer_id
+ORDER BY customer_id;
+
+--Customer spending the most money
+SELECT customer_id, SUM(amount) FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) DESC;
+
+--Count of transactions
+SELECT customer_id, COUNT(amount) FROM payment
+GROUP BY customer_id
+ORDER BY COUNT(amount) DESC;
+
+SELECT * FROM payment;
+
+
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+GROUP BY customer_id, staff_id;
+
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+GROUP BY staff_id, customer_id;
+
+SELECT staff_id, customer_id, SUM(amount) FROM payment
+GROUP BY staff_id, customer_id;
+
+SELECT customer_id, staff_id, SUM(amount) FROM payment
+GROUP BY staff_id, customer_id
+ORDER BY customer_id;
+
+--Date Function
+SELECT * FROM payment;
+
+--Date function remoes time stamp from date info
+SELECT DATE(payment_date), SUM(amount) FROM payment
+GROUP BY DATE(payment_date)
+ORDER BY SUM(amount);
+
+SELECT DATE(payment_date), SUM(amount) FROM payment
+GROUP BY DATE(payment_date)
+ORDER BY SUM(amount) DESC;
+
+
+
+
+
+
+
 
 
 
