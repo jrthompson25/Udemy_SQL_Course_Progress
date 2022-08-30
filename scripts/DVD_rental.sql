@@ -346,7 +346,7 @@ ORDER BY customer_id;
 --Date Function
 SELECT * FROM payment;
 
---Date function remoes time stamp from date info
+--Date function removes time stamp from date info
 SELECT DATE(payment_date), SUM(amount) FROM payment
 GROUP BY DATE(payment_date)
 ORDER BY SUM(amount);
@@ -356,9 +356,69 @@ GROUP BY DATE(payment_date)
 ORDER BY SUM(amount) DESC;
 
 
+--Group By Challenge
+--Taking a look at payment table
+SELECT * FROM payment;
+
+SELECT staff_id, COUNT(amount) 
+FROM payment
+GROUP BY staff_id;
+
+SELECT staff_id, COUNT(payment_id) 
+FROM payment
+GROUP BY staff_id;
+
+SELECT rating, ROUND(AVG(replacement_cost), 2)
+FROM film
+GROUP BY rating;
+
+SELECT * FROM payment;
+
+SELECT customer_id, SUM(amount) 
+FROM payment
+GROUP BY customer_id 
+ORDER BY SUM(amount) DESC
+LIMIT 5;
+
+--Having Clause - Filtering aggregate values
+--Example:
+--SELECT company, SUM(sales)
+--FROM finance_table
+--WHERE company != 'Google'
+--GROUP BY company
+--HAVING SUM(sales) > 1000
+
+
+SELECT * FROM payment;
+
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+HAVING SUM(amount) > 100;
+
+SELECT store_id, COUNT(customer_id)
+FROM customer
+GROUP BY store_id
+HAVING COUNT(customer_id) > 300;
+
+--HAVING Clause Challenge
+SELECT customer_id, COUNT(amount)
+FROM payment
+GROUP BY customer_id
+HAVING COUNT(amount) >= 40;
+
+
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE staff_id = 2
+GROUP BY customer_id
+HAVING SUM(amount) > 100;
+
+--Ready for Assessment Test
 
 
 
+ 
 
 
 
