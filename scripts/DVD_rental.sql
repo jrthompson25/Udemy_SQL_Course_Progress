@@ -415,12 +415,40 @@ GROUP BY customer_id
 HAVING SUM(amount) > 100;
 
 --Ready for Assessment Test
+--************************Review These
+SELECT * FROM payment;
+
+SELECT customer_id
+FROM payment
+WHERE staff_id = 2
+GROUP BY customer_id
+HAVING SUM(amount) >= 110;
 
 
+SELECT COUNT(*) FROM film
+WHERE title ILIKE 'j%';
 
- 
+SELECT * FROM customer;
+
+SELECT first_name, last_name
+FROM customer
+WHERE first_name LIKE 'E%' AND address_id < 500
+ORDER BY customer_id DESC
+LIMIT 1;
 
 
+-- AS Statement - Aliases
+SELECT COUNT(*) AS num_transactions
+FROM payment;
+
+SELECT customer_id, SUM(amount) AS total_spent
+FROM payment
+GROUP BY customer_id
+HAVING SUM(amount) > 100;
+
+SELECT customer_id, amount AS new_name
+FROM payment
+WHERE amount > 2;
 
 
 
