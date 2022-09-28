@@ -468,6 +468,19 @@ FROM payment
 INNER JOIN customer
 ON payment.customer_id = customer.customer_id;
 
+--FULL JOIN and FULL JOIN EXCLUDING NON-NULLS
+SELECT * FROM customer
+FULL JOIN payment
+ON customer.customer_id = payment.customer_id;
+
+SELECT * FROM customer
+FULL JOIN payment
+ON customer.customer_id = payment.customer_id
+WHERE customer.customer_id IS NULL OR payment.payment_id IS NULL;
+--The result is that every customer_id has a payment_id associated with it and every payment_id has a customer_id associated with it, which in this scenanario is what we want to find.
+
+
+
 
 
 
