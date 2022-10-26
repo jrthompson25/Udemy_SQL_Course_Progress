@@ -479,6 +479,103 @@ ON customer.customer_id = payment.customer_id
 WHERE customer.customer_id IS NULL OR payment.payment_id IS NULL;
 --The result is that every customer_id has a payment_id associated with it and every payment_id has a customer_id associated with it, which in this scenanario is what we want to find.
 
+--LEFT JOIN
+SELECT * FROM film;
+SELECT * FROM inventory;
+
+--Left join of film and inventory tables
+SELECT film.film_id, title, inventory_id, store_id FROM film
+LEFT JOIN inventory
+ON film.film_id = inventory.film_id;
+
+--Films only in film table and not in inventory table based on matching column (film_id)
+--This answers the question of 'Which films do we not have in inventory?' 
+--This can count as a use case or might would be something requested as an ad-hoc query
+SELECT film.film_id, title, inventory_id, store_id FROM film
+LEFT JOIN inventory
+ON film.film_id = inventory.film_id
+WHERE inventory.film_id IS NULL;
+
+
+--Only films that match between film table and inventory based on matching column (film_id)
+--This answers the question of 'Which films do we have in inventory?'
+--This can count as a use case or might would be something requested as an ad-hoc query
+SELECT film.film_id, title, inventory_id, store_id FROM film
+LEFT JOIN inventory
+ON film.film_id = inventory.film_id
+WHERE inventory.film_id IS NOT NULL;
+
+--RIGHT JOIN
+--Same as LEFT JOIN only the right join brings in everything from the right table and only
+--The things in the left table that match the things in the right table
+--Doesn't matter which join you choose becasue they do the same thing....either you are doing a --left join, which keeps everything in the left table and only what matches the left table from --the right or you are doing a right join, which keeps everything in the right table and only ---what matches the right table from the left. Also, it is up to you which table is the left and --the right. So you could do a left join but do it in reverse by creating the same table but ----making it a right join or you could do a left join again but make the original left table to --be the right and the original right table to be the left. Either way works. 
+
+--UNION
+--Columns have to match in every way (same amount and criteria)
+--Takes the results of two select statements and pastes them directly on top of the another
+
+--JOIN Challenge
+SELECT * FROM address;
+SELECT * FROM customer;
+
+--Correct answer
+SELECT district, email FROM customer
+INNER JOIN address 
+ON address.address_id = customer.address_id
+WHERE district = 'California';
+
+--My answer
+SELECT district, email FROM customer
+LEFT JOIN address 
+ON customer.address_id = address.address_id
+WHERE district ILIKE 'California';
+
+--A LEFT JOIN coded as such will render the same result because I'm looking for emails based on --customer and using customer as the left table and address as the right. It would be incorrect 
+--if it were looking for customers (right) based on emails (left). This is an example where the 
+--order in asymmetrical joins (left or right) matter greatly, whereas the order in a 
+--symmetrical join (inner) does not. 
+
+-- The joining key code is in a different order that the correct answer, but that doesn't 
+-- matter. It can be done either way and it is not wrong. 
+
+--The reason for the ILIKE was to make sure I extracted all results of the word 'California' regardless of case.
+
+
+SELECT * FROM actor;
+SELECT * FROM film;
+SELECT * FROM film_actor;
+
+--Correct Answer
+SELECT title, first_name, last_name
+FROM film_actor
+INNER JOIN actor
+ON film_actor.actor_id = actor.actor_id
+INNER JOIN film
+ON film_actor.film_id = film.film_id
+WHERE first_name = 'Nick' AND last_name = 'Wahlberg';
+
+-- My answer-same results
+SELECT actor.first_name, actor.last_name, film.title FROM actor 
+LEFT JOIN film_actor 
+ON actor.actor_id = film_actor.actor_id
+LEFT JOIN film
+ON film_actor.film_id = film.film_id
+WHERE actor.first_name = 'Nick' and actor.last_name = 'Wahlberg';
+
+-- I could have done without the table name followed by dot notation and column name where 
+-- those were used because all columns were unique but it works all the same.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
