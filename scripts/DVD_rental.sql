@@ -566,15 +566,97 @@ WHERE actor.first_name = 'Nick' and actor.last_name = 'Wahlberg';
 -- those were used because all columns were unique but it works all the same.
 
 
+--Advanced SQL Commands
+
+--Timestamps and Extract - More useful when you create your own tables than in SELECT statements
+--TIME - Contains only time
+--DATE - Contains only date
+--TIMESTAMP - contains date and time
+--TIMESTAMPTZ - Contains date, time, and timezone
+
+--Functions and Operations related to these specific data types:
+--TIMEZONE - Shows timezone of current location 
+--NOW
+--TIMEOFDAY
+--CURRENT_TIME
+--CURRENT_DATE
+
+SHOW ALL
+SHOW TIMEZONE
+SELECT NOW()
+SELECT TIMEOFDAY()
+SELECT CURRENT_TIME
+SELECT CURRENT_DATE
 
 
 
+--Timestamps and extract
+--EXRACT() - Allows you to "extract" or obtain a sub-component of a date value
+--Usage Example - EXTRACT(YEAR FROM date_col)
+
+--AGE() - Calculates and returns the current age given a timestamp
+--Usage Example - AGE(date_col)
+--Returns - 13 years 1 month 5 days 01:34:13.003423
+
+--TO_CHAR() - A function that converts data types to text
+--Useful for timestamp formatting
+--Usage Example - TO_CHAR(date_col, 'mm-dd-yyyy')
+
+--YEAR
 
 
+--MONTH
 
 
+--DAY
 
 
+--WEEK
+
+
+--QUARTER
+
+
+--EXTRACTING YEAR
+SELECT * FROM payment;
+SELECT EXTRACT (YEAR FROM payment_date) AS year
+FROM payment;
+
+--EXTRACTING MONTH
+SELECT EXTRACT (MONTH FROM payment_date) AS pay_month
+FROM payment;
+
+--EXTRACTING QUARTER
+SELECT EXTRACT (QUARTER FROM payment_date) AS pay_quarter
+FROM payment;
+
+--AGE gives us the amount of time that has passed between our present time and the timestamp
+SELECT AGE(payment_date)
+FROM payment;
+
+--With dash
+SELECT TO_CHAR(payment_date, 'MONTH-YYYY')
+FROM payment;
+
+--Without dash
+SELECT TO_CHAR(payment_date, 'MONTH YYYY')
+FROM payment;
+
+--Abbreviated month in lower case and day with a slash dividing month and year
+SELECT TO_CHAR(payment_date, 'mon/dd/YYYY')
+FROM payment;
+
+--Month number
+SELECT TO_CHAR(payment_date, 'MM/dd/YYYY')
+FROM payment;
+
+--Month number with dashes
+SELECT TO_CHAR(payment_date, 'MM-dd-YYYY')
+FROM payment;
+
+--European formatting standards
+SELECT TO_CHAR(payment_date, 'dd-MM-YYYY')
+FROM payment;
 
 
 
