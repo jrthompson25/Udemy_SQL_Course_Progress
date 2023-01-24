@@ -659,6 +659,41 @@ SELECT TO_CHAR(payment_date, 'dd-MM-YYYY')
 FROM payment;
 
 
+--Subqueries and EXISTS Functions
+
+--Able to use the comparison operator in the WHERE clause since all we're returning is a single value 
+SELECT title, rental_rate FROM film
+WHERE rental_rate > (SELECT AVG(rental_rate)
+FROM film);
+
+--When returning multiple values, we need to use the IN operator.
+SELECT * FROM rental
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30';
+
+SELECT film_id, title 
+FROM film
+WHERE film_id IN
+(SELECT inventory.film_id 
+FROM rental
+INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+WHERE return_date BETWEEN '2005-05-29' AND '2005-05-30');
+
+SELECT first_name, last_name
+FROM customer AS c
+WHERE EXISTS
+(SELECT * FROM payment AS p 
+WHERE p.customer_id = C.customer_id
+AND amount > 11)
+
+SELECT first_name, last_name
+FROM customer AS c
+WHERE NOT EXISTS
+(SELECT * FROM payment AS p 
+WHERE p.customer_id = C.customer_id
+AND amount > 11)
+
+
+
 
 
 
